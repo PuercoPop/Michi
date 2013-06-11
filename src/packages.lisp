@@ -1,2 +1,2 @@
 (defpackage #:michi
-  (:use :cl))
+  (:use :cl :string-case))

@@ -106,7 +106,7 @@
 
 (defun player-move (player move board)
   (prog1
-      (ecase move
+      (string-case (move)
         ("TL" (setf (top-left board) player))
         ("TC" (setf (top-center board) player))
         ("TR" (setf (top-right board) player))
