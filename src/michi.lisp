@@ -175,6 +175,6 @@
                  (t (progn
                       (print-current-turn-message *current-player* *board*)
                       (player-move *current-player* (read-player-move) *board*)
-                      (main)))
+                      (main-loop)))
                  )))
       (main-loop))))
