@@ -168,13 +168,12 @@
   (let ((*current-player* :player-1)
         (*board* (make-sequence 'list 9 :initial-element :empty)))
 
-    (labels ((main-loop ()
-               (cond
-                 ((game-ended? *board*) (print-eog-message *current-player*
-                                                         *board*))
-                 (t (progn
-                      (print-current-turn-message *current-player* *board*)
-                      (player-move *current-player* (read-player-move) *board*)
-                      (main-loop)))
-                 )))
-      (main-loop))))
+
+    (loop
+       until (game-ended? *board*)
+       do
+         (print-current-turn-message *current-player* *board*)
+         (player-move *current-player* (read-player-move) *board*)
+         (main-loop))
+    (print-eog-message *current-player*
+                       *board*)))
