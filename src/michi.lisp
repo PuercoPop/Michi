@@ -73,8 +73,8 @@
 (defun middle-left (board)
   (car (cdr (cdr (cdr board)))))
 
-(defun (setf middle-center) (value board)
-  (setf (car (cdr (cdr (cdr (cdr board))))) value))
+(defun (setf middle-left) (value board)
+  (setf (car (cdr (cdr (cdr board)))) value))
 
 (defun middle-center (board)
   (car (cdr (cdr (cdr (cdr board))))))
@@ -92,7 +92,7 @@
   (car (cdr (cdr (cdr (cdr (cdr (cdr board))))))))
 
 (defun (setf bottom-left) (value board)
-  (setf (car (cdr (cdr (cdr (cdr (cdr board)))))) value))
+  (setf (car (cdr (cdr (cdr (cdr (cdr (cdr board))))))) value))
 
 (defun bottom-center (board)
   (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr board)))))))))
