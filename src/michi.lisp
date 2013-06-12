@@ -55,30 +55,56 @@
 (defun top-left (board)
   (car board))
 
+(defun (setf top-left) (value board)
+  (setf (car board) value))
+
 (defun top-center (board)
   (car (cdr board)))
+
+(defun (setf top-center) (value board)
+  (setf (car (cdr board)) value))
 
 (defun top-right (board)
   (car (cdr (cdr board))))
 
+(defun (setf top-right) (value board)
+  (setf (car (cdr (cdr board))) value))
+
 (defun middle-left (board)
   (car (cdr (cdr (cdr board)))))
+
+(defun (setf middle-center) (value board)
+  (setf (car (cdr (cdr (cdr (cdr board))))) value))
 
 (defun middle-center (board)
   (car (cdr (cdr (cdr (cdr board))))))
 
+(defun (setf middle-center) (value board)
+  (setf (car (cdr (cdr (cdr (cdr board))))) value))
+
 (defun middle-right (board)
   (car (cdr (cdr (cdr (cdr (cdr board)))))))
+
+(defun (setf middle-right) (value board)
+  (setf (car (cdr (cdr (cdr (cdr (cdr board)))))) value))
 
 (defun bottom-left (board)
   (car (cdr (cdr (cdr (cdr (cdr (cdr board))))))))
 
+(defun (setf bottom-left) (value board)
+  (setf (car (cdr (cdr (cdr (cdr (cdr board)))))) value))
+
 (defun bottom-center (board)
   (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr board)))))))))
+
+(defun (setf bottom-center) (value board)
+  (setf (car (cdr board)) value))
 
 (defun bottom-right (board)
   (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr board))))))))))
 
+(defun (setf bottom-right) (value board)
+  (setf (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr board))))))))) value))
 
 (defun are-the-same? (&rest xs)
   (every (lambda (pair) (apply #'eq pair)) (transitive-pairing xs)))

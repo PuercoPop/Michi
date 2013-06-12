@@ -1,2 +1,4 @@
 (defpackage #:michi
-  (:use :cl :string-case))
+  (:use :cl :string-case)
+  (:export :main
+           :top-left))
