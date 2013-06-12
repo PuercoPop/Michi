@@ -157,7 +157,7 @@
 
 (defun print-current-turn-message (player board)
   (print-board board)
-  (format t "It is ~A's turn. Input Your move" player)
+  (format t "It is ~A's turn. Input Your move~%" player)
   )
 
 (defun print-eog-message (player board)
@@ -167,13 +167,14 @@
 (defun main ()
   (let ((*current-player* :player-1)
         (*board* (make-sequence 'list 9 :initial-element :empty)))
-
+    (declare (special *current-player*)
+             (special *board*))
 
     (loop
        until (game-ended? *board*)
        do
          (print-current-turn-message *current-player* *board*)
-         (player-move *current-player* (read-player-move) *board*)
-         (main-loop))
+         (player-move *current-player* (read-player-move) *board*))
+
     (print-eog-message *current-player*
                        *board*)))
