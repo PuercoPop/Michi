@@ -149,7 +149,9 @@
        until (game-ended? *board*)
        do
          (print-current-turn-message *current-player* *board*)
-         (player-move *current-player* (read-player-move) *board*))
+         (handler-case
+             (player-move *current-player* (read-player-move) *board*)
+           (invalid-move (message) (format t "~A~%" message))))
 
     (print-eog-message *current-player*
                        *board*)))
