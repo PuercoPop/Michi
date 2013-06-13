@@ -10,4 +10,5 @@
   :pathname "src/"
   :depends-on (#:string-case)
   :components ((:file "packages")
+               (:file "conditions")
                (:file "michi")))

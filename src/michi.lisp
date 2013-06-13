@@ -56,7 +56,9 @@
   (car board))
 
 (defun (setf top-left) (value board)
-  (setf (car board) value))
+  (if (eq (top-left board) :empty)
+      (setf (car board) value)
+      (error 'invalid-move :text "The square is not empty")))
 
 (defun top-center (board)
   (car (cdr board)))
@@ -129,7 +131,6 @@
            (format t " ~A~A |" (car board) padding)
            (print-board (cdr board))))))
 
-
 (defun player-move (player move board)
   (prog1
       (string-case (move)
@@ -162,6 +163,7 @@
 
 (defun print-eog-message (player board)
   (update-player player)
+  (print-board board)
   (format t "~A won. Congrats" player))
 
 (defun main ()
