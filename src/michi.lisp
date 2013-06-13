@@ -2,9 +2,9 @@
 
 ;; (defvar *board* (make-sequence 'list 9 :initial-element :empty))
 (defparameter +players+ (list :player-1 :player-2))
-(defparameter +valid-moves+ (list "TL" "TC" "TR"
-                                  "ML" "MC" "MR"
-                                  "BL" "BC" "BR"))
+(defparameter +valid-move-inputs+ (list "TL" "TC" "TR"
+                                        "ML" "MC" "MR"
+                                        "BL" "BC" "BR"))
 
 (defun game-ended? (board)
   (or (not (has-empty-places? board))
@@ -125,7 +125,7 @@
 
 (defun read-player-move ()
   (let ((player-input (read-line)))
-    (if (member player-input +valid-moves+ :test #'string-equal)
+    (if (member player-input +valid-move-inputs+ :test #'string-equal)
         player-input
         (read-player-move))))
 
