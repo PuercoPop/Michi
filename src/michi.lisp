@@ -52,61 +52,34 @@
                      (middle-center board)
                      (bottom-left board))))
 
-(defun top-left (board)
-  (car board))
+(defmacro define-accessor (name accessor)
+  `(progn
+    (defun ,name (board)
+       ,accessor)
+    (defun (setf ,name) (value board)
+       (if (eq (,name board) :empty)
+           (setf ,accessor value)
+           (error 'invalid-move :text "The square is not empty")))))
 
-(defun (setf top-left) (value board)
-  (if (eq (top-left board) :empty)
-      (setf (car board) value)
-      (error 'invalid-move :text "The square is not empty")))
+(define-accessor top-left (car board))
 
-(defun top-center (board)
-  (car (cdr board)))
+(define-accessor top-center (car (cdr board)))
 
-(defun (setf top-center) (value board)
-  (setf (car (cdr board)) value))
+(define-accessor top-right (car (cdr (cdr board))))
 
-(defun top-right (board)
-  (car (cdr (cdr board))))
+(define-accessor middle-left (car (cdr (cdr (cdr board)))))
 
-(defun (setf top-right) (value board)
-  (setf (car (cdr (cdr board))) value))
+(define-accessor middle-center (car (cdr (cdr (cdr (cdr board))))))
 
-(defun middle-left (board)
-  (car (cdr (cdr (cdr board)))))
+(define-accessor middle-right (car (cdr (cdr (cdr (cdr (cdr board)))))))
 
-(defun (setf middle-left) (value board)
-  (setf (car (cdr (cdr (cdr board)))) value))
+(define-accessor bottom-left (car (cdr (cdr (cdr (cdr (cdr (cdr board))))))))
 
-(defun middle-center (board)
-  (car (cdr (cdr (cdr (cdr board))))))
+(define-accessor bottom-center (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr board)))))))))
 
-(defun (setf middle-center) (value board)
-  (setf (car (cdr (cdr (cdr (cdr board))))) value))
+(define-accessor bottom-right (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr board))))))))))
 
-(defun middle-right (board)
-  (car (cdr (cdr (cdr (cdr (cdr board)))))))
 
-(defun (setf middle-right) (value board)
-  (setf (car (cdr (cdr (cdr (cdr (cdr board)))))) value))
-
-(defun bottom-left (board)
-  (car (cdr (cdr (cdr (cdr (cdr (cdr board))))))))
-
-(defun (setf bottom-left) (value board)
-  (setf (car (cdr (cdr (cdr (cdr (cdr (cdr board))))))) value))
-
-(defun bottom-center (board)
-  (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr board)))))))))
-
-(defun (setf bottom-center) (value board)
-  (setf (car (cdr board)) value))
-
-(defun bottom-right (board)
-  (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr board))))))))))
-
-(defun (setf bottom-right) (value board)
-  (setf (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr board))))))))) value))
 
 (defun are-the-same? (&rest xs)
   (every (lambda (pair) (apply #'eq pair)) (transitive-pairing xs)))
