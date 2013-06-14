@@ -1,0 +1,6 @@
+* TODO
+  - [ ] Refactor players into a class
+  - [ ] Refactor player-move to use a dataflow language
+  - [ ] Implement a possible move for board. (Recursive approach for bonus points)
+  - [ ] Generic AI that agregates end positions. Maybe later min max
+  - [ ] Extend the board for 3x3

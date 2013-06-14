@@ -12,4 +12,5 @@
                #:alexandria)
   :components ((:file "packages")
                (:file "conditions")
+               (:file "player")
                (:file "michi")))
