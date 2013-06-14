@@ -1,4 +1,4 @@
 (defpackage #:michi
   (:use :cl :string-case)
-  (:export :main
-           :top-left))
+  (:import-from :alexandria :circular-list)
+  (:export :main))

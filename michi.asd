@@ -8,7 +8,8 @@
   :serial t
   :license "<3"
   :pathname "src/"
-  :depends-on (#:string-case)
+  :depends-on (#:string-case
+               #:alexandria)
   :components ((:file "packages")
                (:file "conditions")
                (:file "michi")))

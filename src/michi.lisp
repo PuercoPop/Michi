@@ -1,7 +1,6 @@
 (in-package :michi)
 
 ;; (defvar *board* (make-sequence 'list 9 :initial-element :empty))
-(defparameter +players+ (list :player-1 :player-2))
 (defparameter +valid-move-inputs+ (list "TL" "TC" "TR"
                                         "ML" "MC" "MR"
                                         "BL" "BC" "BR"))
@@ -116,12 +115,12 @@
         ("BL" (setf (bottom-left board) player))
         ("BC" (setf (bottom-center board) player))
         ("BR" (setf (bottom-right board) player)))
-    (update-player player)))
+    (update-player)))
 
-(defun update-player (player)
-  (if (eq *current-player* :player-1)
-        (setf *current-player* :player-2)
-        (setf *current-player* :player-1)))
+(defun update-player ()
+  "Updates current player"
+  (setf *current-player* (car *players*))
+  (setf *players* (cdr *players*)))
 
 (defun read-player-move ()
   (let ((player-input (read-line)))
@@ -135,16 +134,18 @@
   )
 
 (defun print-eog-message (player board)
-  (update-player player)
+  "End of Game message"
   (print-board board)
   (format t "~A won. Congrats" player))
 
 (defun main ()
-  (let ((*current-player* :player-1)
+  (let ((*players* (circular-list :player-1 :player-2))
         (*board* (make-sequence 'list 9 :initial-element :empty)))
-    (declare (special *current-player*)
+    (declare (special *players*)
+             (special *current-player*)
              (special *board*))
 
+    (update-player)
     (loop
        until (game-ended? *board*)
        do
@@ -153,5 +154,6 @@
              (player-move *current-player* (read-player-move) *board*)
            (invalid-move (message) (format t "~A~%" message))))
 
+    (update-player)
     (print-eog-message *current-player*
                        *board*)))
